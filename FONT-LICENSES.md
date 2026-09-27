@@ -1,43 +1,43 @@
-# 气泡字体与许可
+# Speech Bubble Fonts and Licensing
 
-气泡采用两款免费、可商用的 OFL 字体。它们随插件内嵌，运行时不请求 Google Fonts、CDN 或其他字体服务，不要求用户安装系统字体。电脑屏幕的会话数字仍使用原来的本地 mono 字体，不应用这套气泡字体。
+The speech bubbles use two free, OFL-licensed fonts that permit commercial use. Both are embedded in the plugin: no requests are made to Google Fonts, CDNs, or other font services at runtime, and users do not need to install system fonts. The session count on the whale's computer screen continues to use the existing local monospace font, not these bubble fonts.
 
-## 中文：站酷快乐体 · ZCOOL KuaiLe
+## Chinese: ZCOOL KuaiLe
 
-- 来源：[@fontsource/zcool-kuaile 5.3.0](https://registry.npmjs.org/@fontsource/zcool-kuaile/5.3.0)，固定版本归档经 SHA-512 校验后提取；未执行 npm 包脚本。
-- 上游：[ZCOOL KuaiLe 项目](https://github.com/googlefonts/zcool-kuaile)。
-- 版权：Copyright 2018 The ZCOOL KuaiLe Project Authors。
-- 原始许可：[OFL-ZCOOL-KuaiLe](assets/fonts/OFL-ZCOOL-KuaiLe.txt)，从已验证归档逐字节复制。
-- 修改：只保留当前真正气泡文案所需、且由中文字体负责的字形（`state.*`、`working.*`、`celebrate.*`、`error.*` 及 `pet.greeting`）；菜单和设置翻译不参与子集，转换为 WOFF2；字形轮廓没有重新绘制。作为修改版，内部字体名改为 **Whale Bubble Han**，PostScript 名为 `WhaleBubbleHan-Regular`，字重 400。
-- 产物：[bubble-zh.woff2](assets/fonts/bubble-zh.woff2)，10,888 字节。
+- Source: [@fontsource/zcool-kuaile 5.3.0](https://registry.npmjs.org/@fontsource/zcool-kuaile/5.3.0), extracted from a pinned-version archive after SHA-512 verification. No npm package scripts were executed.
+- Upstream: [ZCOOL KuaiLe project](https://github.com/googlefonts/zcool-kuaile).
+- Copyright: Copyright 2018 The ZCOOL KuaiLe Project Authors.
+- Original license: [OFL-ZCOOL-KuaiLe](<assets/fonts/OFL-ZCOOL-KuaiLe.txt>), copied byte-for-byte from the verified archive.
+- Modifications: subset to retain only the glyphs assigned to the Chinese font that are needed by the current bubble text (`state.*`, `working.*`, `celebrate.*`, `error.*`, and `pet.greeting`), and converted to WOFF2. Menu and settings translations are excluded from the subset. Glyph outlines have not been redrawn. As a modified version, the font has been renamed internally to **Whale Bubble Han**, with the PostScript name `WhaleBubbleHan-Regular` and weight 400.
+- Output: [bubble-zh.woff2](<assets/fonts/bubble-zh.woff2>), 10,888 bytes.
 
-## 英文：Fredoka 500
+## English: Fredoka 500
 
-- 来源：[@fontsource/fredoka 5.3.0](https://registry.npmjs.org/@fontsource/fredoka/5.3.0)，固定版本归档经 SHA-512 校验后提取；未执行 npm 包脚本。
-- 上游：[Fredoka 项目](https://github.com/hafontia/Fredoka-One)。
-- 版权：Copyright 2016 The Fredoka Project Authors。
-- 原始许可：[OFL-Fredoka](assets/fonts/OFL-Fredoka.txt)，从已验证归档逐字节复制。
-- 使用原包的 `fredoka-latin-500-normal.woff2`，内容完全不变，实际 OS/2 字重为 500。其内部 family 是 `Fredoka Light Medium`、PostScript 名为 `FredokaLight-Medium`；这些是来源文件自身的命名，不代表实际使用轻体字重。运行时可用独立 CSS 别名 `Whale Bubble Latin` 注册。
-- 产物：[bubble-en.woff2](assets/fonts/bubble-en.woff2)，16,248 字节。
+- Source: [@fontsource/fredoka 5.3.0](https://registry.npmjs.org/@fontsource/fredoka/5.3.0), extracted from a pinned-version archive after SHA-512 verification. No npm package scripts were executed.
+- Upstream: [Fredoka project](https://github.com/hafontia/Fredoka-One).
+- Copyright: Copyright 2016 The Fredoka Project Authors.
+- Original license: [OFL-Fredoka](<assets/fonts/OFL-Fredoka.txt>), copied byte-for-byte from the verified archive.
+- The original package's `fredoka-latin-500-normal.woff2` is used without any changes. Its actual OS/2 weight is 500. Its internal family name is `Fredoka Light Medium`, and its PostScript name is `FredokaLight-Medium`; these names come from the source file and do not indicate that a light weight is being used. The font can be registered at runtime under the independent CSS alias `Whale Bubble Latin`.
+- Output: [bubble-en.woff2](<assets/fonts/bubble-en.woff2>), 16,248 bytes.
 
-两份字体合计 **27,136 字节，约 26.5 KiB**。当前所有气泡文案的实际字符都已验证覆盖。菜单、设置、恢复按钮等继续使用系统 UI 字体；它们独有的中文字形和 `↗` 不必保留在气泡子集中，新增菜单翻译不会扩大气泡字体。以后增加中文**气泡**文案需要重做子集/覆盖检查，而不是把未知字符静默替换成方框。
+Together, the two font files total **27,136 bytes, approximately 26.5 KiB**. Coverage has been verified for every character actually used in the current bubble text. Menus, settings, the restore button, and other UI elements continue to use system UI fonts. Chinese glyphs used only in those elements, as well as `↗`, do not need to be included in the bubble subset, so new menu translations do not increase its size. Adding Chinese **bubble** text requires rebuilding the subset and checking coverage, rather than silently replacing unsupported characters with boxes.
 
-## 商用、内嵌与分发条件
+## Commercial Use, Embedding, and Distribution
 
-两份原始许可证都是 **SIL Open Font License 1.1**：
+Both original licenses are the **SIL Open Font License 1.1**:
 
-- 允许商业使用、修改、内嵌，以及随软件一起分发或销售。
-- 分发时必须保留对应作者版权声明和完整 OFL；本包随附两份原文。
-- 不能把字体本身单独售卖。
-- 修改版须遵守 Reserved Font Name 条件；本项目已对中文子集使用自己的字体名。
-- 字体及其修改版仍受 OFL 约束，**不改授予本项目的 MIT 代码许可**；用字体排版生成的页面或图片本身不因此被要求采用 OFL。
-- 上游作者名称仅用于来源与贡献说明，不暗示其为此插件背书。
+- Commercial use, modification, embedding, and distribution or sale together with software are permitted.
+- Distribution must retain the corresponding copyright notices and the complete OFL text. This package includes both original license files.
+- The fonts may not be sold by themselves.
+- Modified versions must comply with the Reserved Font Name requirements. This project uses its own font name for the Chinese subset.
+- The fonts and their modified versions remain subject to the OFL; they are **not relicensed under this project's MIT code license**. Pages or images created using the fonts are not required to adopt the OFL merely because they use these fonts.
+- Upstream authors' names are used only for attribution and acknowledgment of contributions, not to imply endorsement of this plugin.
 
-这仅说明字体许可，不替代鲸鱼角色插画的授权确认。
+This document covers font licensing only and does not replace permission for the whale character illustrations.
 
-## 可复现来源与工具
+## Reproducible Sources and Tools
 
-归档完整性：
+Archive integrity:
 
 ```text
 @fontsource/zcool-kuaile@5.3.0
@@ -49,8 +49,8 @@ https://registry.npmjs.org/@fontsource/fredoka/-/fredoka-5.3.0.tgz
 sha512-s2IhjQ50wDnKkkaKmjhtL0rxQg6ITsVusiipM3m7zUwVZZbbCKsscNDkngwp28xVzfIt7neWrkgU1qKqyTycQg==
 ```
 
-本仓库提供已处理的字体、完整许可和产物清单。正常插件构建与安装不需要下载或重新处理字体。
+This repository includes the processed fonts, complete license texts, and output manifest. Normal plugin builds and installation do not require downloading or reprocessing fonts.
 
-中文子集制作时使用fonttools 4.61.1；首个公开快照未包含当时的研发下载/子集脚本，因此不承诺仅凭本仓库一键重现中文子集。需要新增中文气泡文案时，应从上述固定来源重新制作子集、保留OFL与修改版命名要求，并更新字体清单和字形覆盖测试。
+The Chinese subset was created using fonttools 4.61.1. The initial public snapshot did not include the development download and subsetting scripts used at the time, so this repository alone is not guaranteed to provide one-step reproduction of the Chinese subset. When adding Chinese bubble text, rebuild the subset from the pinned sources above, retain the OFL notices and modified-font naming requirements, and update the font manifest and glyph coverage tests.
 
-产物名称、真实 family/PostScript 名、字形覆盖、字重、大小及 SHA-256 保存在[字体清单](assets/fonts/manifest.json)。
+Output filenames, actual family and PostScript names, glyph coverage, weights, sizes, and SHA-256 hashes are recorded in the [font manifest](<assets/fonts/manifest.json>).

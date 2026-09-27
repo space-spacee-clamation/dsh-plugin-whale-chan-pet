@@ -1,23 +1,23 @@
-# 角色素材授权说明
+# Character Asset Licensing
 
-## 素材来源与权利归属
+## Source and Ownership
 
-本插件使用的六张鲸鱼 SVG（包括错误姿态）由项目拥有者提供。据项目拥有者说明，这些鲸鱼贴纸为 DeepSeek 原创素材，相关权利归 DeepSeek 或其相应权利人所有。原始文件保持不变，项目内仅按状态重命名复制。
+The six whale SVGs used in this plugin, including the error pose, were supplied by the project owner. According to the project owner, these whale stickers are original DeepSeek assets, and the associated rights belong to DeepSeek or the respective rights holders. The original files have not been modified; copies in this project have only been renamed to match their states.
 
-## 本项目使用与分发许可
+## Permission for Use and Distribution in This Project
 
-项目拥有者已明确确认：允许将上述贴纸用于个人公开 GitHub 仓库及其发布的插件安装包。
+The project owner has explicitly confirmed that these stickers may be used in their personal public GitHub repository and the plugin installation packages released from it.
 
-本项目已获许可，在本仓库及其发布的插件安装包中使用和分发上述素材。该许可不自动延伸至第三方的提取、修改或再次分发。
+This project has permission to use and distribute these assets in this repository and its released plugin installation packages. This permission does not automatically extend to extraction, modification, or redistribution by third parties.
 
-本说明不额外授予素材改编、商用、商标使用或其他未明确约定的权利。如需超出本项目范围使用，请另行取得相应权利人的许可。
+This notice grants no additional rights to adapt the assets, use them commercially, use trademarks, or exercise any other rights not expressly agreed upon. For use beyond the scope of this project, obtain separate permission from the relevant rights holders.
 
-## 与代码许可的区别
+## Separate from the Code License
 
-本项目没有把这些素材声明为 MIT、CC0 或项目拥有者的自有原创。MIT 代码许可不适用于鲸鱼 SVG、图像预览及生成 bundle 中嵌入的鲸鱼图像；将图像嵌入代码或安装包不会改变其权利归属。
+This project does not designate these assets as MIT-licensed, CC0, or original works owned by the project owner. The MIT license for the code does not apply to the whale SVGs, image previews, or whale images embedded in generated bundles. Embedding the images in code or installation packages does not change their ownership.
 
-字体使用各自的许可证，与鲸鱼插画授权分开处理。
+Fonts are governed by their own licenses, separately from the whale illustration permissions.
 
-## 非官方项目声明
+## Unofficial Project
 
-本项目为个人开发项目，并非 DeepSeek 官方产品，不代表 DeepSeek 的官方立场或背书。
+This is a personal, independently developed project, not an official DeepSeek product. It does not represent DeepSeek's official position or imply endorsement by DeepSeek.
