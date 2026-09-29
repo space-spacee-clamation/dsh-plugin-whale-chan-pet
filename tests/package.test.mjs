@@ -18,7 +18,7 @@ test('package is a self-contained DSH bundle with only its own inserted row', ()
   for (const hook of ['preinstall', 'install', 'postinstall', 'prepare', 'prepack', 'postpack']) {
     assert.equal(manifest.scripts[hook], undefined);
   }
-  assert.equal(manifest.version, '0.2.8');
+  assert.equal(manifest.version, '0.2.9');
   assert.equal(fs.existsSync(path.join(root, 'lib/version.js')), false);
   assert.equal(manifest.files.includes('DIAGNOSTICS.md'), false);
   assert.deepEqual(manifest.repository, { type: 'git', url: 'git+https://github.com/Yifffan/dsh-plugin-whale-pet.git' });
@@ -100,4 +100,28 @@ test('six inert SVGs and offline preview are present, without source paths', () 
   assert.doesNotMatch(read('tools/build.mjs'), /tools\/fixtures|dsh-chevron\.svg/);
   assert.ok(read('preview/runtime.js').includes('M 4 6 L 8 10 L 12 6'));
   assert.ok(!read('lib/client.js').includes('M 4 6 L 8 10 L 12 6'));
+});
+test('manifest icon is a shippable, inert, package-relative SVG within DSH limits', () => {
+  const icon = manifest.icon;
+  assert.equal(typeof icon, 'string');
+  // DSH accepts only a relative file path; absolute paths, URLs and data: URIs are rejected.
+  assert.doesNotMatch(icon, /^(?:[A-Za-z]:[\\/]|[\\/]|[A-Za-z][A-Za-z\d+.-]*:)/);
+  assert.equal(path.extname(icon).toLowerCase(), '.svg');
+  const resolved = path.resolve(root, icon);
+  const relative = path.relative(root, resolved);
+  assert.ok(!relative.startsWith('..') && !path.isAbsolute(relative));
+  const stat = fs.statSync(resolved);
+  assert.ok(stat.isFile());
+  assert.ok(stat.size <= 256 * 1024, 'the icon must stay within the 256 KiB DSH limit');
+  const svg = fs.readFileSync(resolved, 'utf8');
+  assert.match(svg, /^<svg\s/);
+  assert.doesNotMatch(svg, /<script|<foreignObject|\son\w+\s*=|\shref\s*=|\sstyle\s*=|javascript:|data:/i);
+  assert.doesNotMatch(svg.replace(/xmlns="http:\/\/www\.w3\.org\/2000\/svg"/g, ''), /https?:\/\//);
+  const tags = [...svg.matchAll(/<\/?([a-zA-Z][\w:-]*)\b/g)].map(match => match[1]);
+  assert.deepEqual([...new Set(tags)].sort(), ['defs', 'linearGradient', 'path', 'stop', 'svg']);
+  // The artwork is embedded verbatim, so the icon cannot drift from the shipped illustration.
+  const artwork = read('assets/working.svg');
+  assert.ok(svg.includes(artwork.slice(artwork.indexOf('>') + 1, artwork.lastIndexOf('</svg>')).trim()));
+  // assets/ is published, so the icon travels with the package.
+  assert.ok(manifest.files.includes('assets'));
 });

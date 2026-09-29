@@ -2,7 +2,7 @@
 
 **Your little whale buddy for work, wins, and well-earned naps.**
 
-![Six whale states: working, waiting, celebrating, error, resting, and sleeping](https://raw.githubusercontent.com/Yifffan/dsh-plugin-whale-pet/v0.2.8/docs/images/whale-states.png)
+![Six whale states: working, waiting, celebrating, error, resting, and sleeping](https://raw.githubusercontent.com/Yifffan/dsh-plugin-whale-pet/v0.2.9/docs/images/whale-states.png)
 
 *Character state overview. Whale stickers are original artwork by DeepSeek.*
 
@@ -10,13 +10,14 @@ A little companion that lives inside your DeepSeek Harness (DSH) window—there 
 
 一只住在 DSH 窗口里的小鲸鱼。陪你工作、等你决定，也陪你好好打个盹。
 
-**Version 0.2.8** fixes completion synchronization and removes the temporary diagnostic interface. Normal-reply celebration was confirmed in the installed app with the namespace fix. See the [release notes](CHANGELOG.md) and [compatibility notes](COMPATIBILITY.md) for verification scope.
+**Version 0.2.9** adds the custom plugin icon while keeping the completion synchronization confirmed in 0.2.8. The complete working-state whale is embedded unmodified in `assets/icon.svg`. See the [release notes](CHANGELOG.md) and [compatibility notes](COMPATIBILITY.md) for verification scope.
 
 ## Features
 
 - Drag, resize, hide, and restore your whale inside the DSH window.
 - Choose **All sessions** or **Current session**, with a working-session count for ordinary main sessions.
 - Six character states: resting, working, waiting, celebrating, sleeping, and error.
+- A custom icon in the DSH plugin manager, embedded from the original whale artwork without redrawing it.
 - English and Chinese text, light and dark settings menus, and reduced-motion support.
 - Separate normal completion from cancellation and failure; a falling working count or green unread indicator alone does not mean success.
 
@@ -34,23 +35,23 @@ Enter the package name in DSH's plugin installation interface:
 dsh-plugin-whale-pet
 ```
 
-To pin this release, use `dsh-plugin-whale-pet@0.2.8`. The normal package name follows npm's `latest` channel; the old `beta` channel is not required.
+To pin this release, use `dsh-plugin-whale-pet@0.2.9`. The normal package name follows npm's `latest` channel; the old `beta` channel is not required.
 
 ### 2. GitHub
 
 Enter this pinned version spec in DSH's plugin installation interface:
 
 ```text
-github:Yifffan/dsh-plugin-whale-pet#v0.2.8
+github:Yifffan/dsh-plugin-whale-pet#v0.2.9
 ```
 
 The tagged source includes prebuilt plugin files; users do not need to build it themselves.
 
 ### 3. Download a local package
 
-[Download dsh-plugin-whale-pet-0.2.8.tgz](https://registry.npmjs.org/dsh-plugin-whale-pet/-/dsh-plugin-whale-pet-0.2.8.tgz)
+[Download dsh-plugin-whale-pet-0.2.9.tgz](https://registry.npmjs.org/dsh-plugin-whale-pet/-/dsh-plugin-whale-pet-0.2.9.tgz)
 
-Download the tgz onto the machine running DSH and enter its absolute local path in DSH's plugin installation interface. The package is also attached to the [GitHub release](https://github.com/Yifffan/dsh-plugin-whale-pet/releases/tag/v0.2.8). GitHub's automatically generated “Source code” archives are not plugin tgz packages.
+Download the tgz onto the machine running DSH and enter its absolute local path in DSH's plugin installation interface. The package is also attached to the [GitHub release](https://github.com/Yifffan/dsh-plugin-whale-pet/releases/tag/v0.2.9). GitHub's automatically generated “Source code” archives are not plugin tgz packages.
 
 **Upgrading from 0.2.6 or earlier? Read the [upgrade notes](UPGRADE.md) first.** Overrides for the old entry ID do not migrate automatically. Do not replace the plugin or restart DSH while tasks are running. This plugin never automatically edits your profile.
 

@@ -2,7 +2,7 @@
 
 ## Release and target environment
 
-- Release: **0.2.8**, without a prerelease suffix.
+- Release: **0.2.9**, without a prerelease suffix.
 - Original compatibility target: **DSH Desktop 0.1.6-alpha.2 on macOS arm64**.
 - Development requires Node.js 22+ and the pnpm version declared in the project manifest.
 - This is a personal plugin, not an official DeepSeek product. A formal package release is not universal certification for every DSH version or operating system.
