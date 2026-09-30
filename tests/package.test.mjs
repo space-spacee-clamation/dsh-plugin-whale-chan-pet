@@ -8,12 +8,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const manifest = JSON.parse(read('package.json'));
 test('package is a self-contained DSH bundle with only its own inserted row', () => {
-  assert.equal(manifest.name, 'dsh-plugin-whale-pet');
+  assert.equal(manifest.name, 'dsh-plugin-whale-chan-pet');
   assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml');
   assert.equal(manifest.dsh.client.platform, 'web');
   for (const target of Object.values(manifest.exports)) assert.equal(fs.existsSync(path.join(root, target)), true);
   assert.equal((read('cordis.patch.yml').match(/- id:/g) || []).length, 1);
-  assert.match(read('cordis.patch.yml'), /id: whale-pet\s*\n\s*name: dsh-plugin-whale-pet/);
+  assert.match(read('cordis.patch.yml'), /id: whale-chan-pet\s*\n\s*name: dsh-plugin-whale-chan-pet/);
   assert.equal(manifest.dependencies, undefined);
   for (const hook of ['preinstall', 'install', 'postinstall', 'prepare', 'prepack', 'postpack']) {
     assert.equal(manifest.scripts[hook], undefined);
@@ -21,8 +21,8 @@ test('package is a self-contained DSH bundle with only its own inserted row', ()
   assert.equal(manifest.version, '0.2.9');
   assert.equal(fs.existsSync(path.join(root, 'lib/version.js')), false);
   assert.equal(manifest.files.includes('DIAGNOSTICS.md'), false);
-  assert.deepEqual(manifest.repository, { type: 'git', url: 'git+https://github.com/Yifffan/dsh-plugin-whale-pet.git' });
-  assert.equal(manifest.homepage, 'https://github.com/Yifffan/dsh-plugin-whale-pet');
+  assert.deepEqual(manifest.repository, { type: 'git', url: 'git+https://github.com/space-spacee-clamation/dsh-plugin-whale-chan-pet.git' });
+  assert.equal(manifest.homepage, 'https://github.com/space-spacee-clamation/dsh-plugin-whale-chan-pet');
   assert.equal(manifest.bugs.url, `${manifest.homepage}/issues`);
   assert.equal(manifest.packageManager, 'pnpm@11.7.0');
   assert.equal(manifest.engines.node, '>=22');
@@ -52,7 +52,7 @@ test('browser output registers one lazy factory using host React and official ic
   assert.doesNotMatch(read('lib/client.js'), /M4 6L7\.29289|__WhaleOfficialIconTest|react\.production\.min/); assert.deepEqual(Array.from(plugin.inject), ['slots', 'sessions', 'connection', 'locale', 'remote']);
   const slots = [];
   plugin.apply({ slots: { inject(name, fn) { assert.equal(name, 'shell.overlay'); fn(); }, register(options, component) { slots.push(options); assert.equal(typeof component, 'function'); return () => {}; } } });
-  assert.equal(slots.length, 1); assert.equal(slots[0].name, 'shell.overlay'); assert.equal(slots[0].id, 'whale-pet');
+  assert.equal(slots.length, 1); assert.equal(slots[0].name, 'shell.overlay'); assert.equal(slots[0].id, 'whale-chan-pet');
 });
 test('pet has no extra status indicator dot in source or generated bundle', () => {
   for (const file of ['src/widget.js', 'src/pet.css', 'lib/client.js']) {
@@ -61,10 +61,10 @@ test('pet has no extra status indicator dot in source or generated bundle', () =
 });
 test('host contributes only a read-only boundary service and owned listener', async () => {
   const host = await import('../lib/index.js');
-  assert.equal(host.name, 'whalePet'); assert.deepEqual(host.inject, ['agents']);
+  assert.equal(host.name, 'whaleChan'); assert.deepEqual(host.inject, ['agents']);
   let service, cleanup;
   host.apply({ get: () => ({ list: () => [], roots: () => [] }),
-    provide(key, value) { assert.equal(key, 'whalePet'); service = value; },
+    provide(key, value) { assert.equal(key, 'whaleChan'); service = value; },
     on(event, callback, options) { assert.equal(event, 'session/event'); assert.equal(options.global, true); assert.equal(typeof callback, 'function'); },
     effect(factory) { cleanup = factory(); },
   });
@@ -88,10 +88,14 @@ test('embedded bubble fonts ship with OFL notices and no runtime font dependency
   assert.match(read('FONT-LICENSES.md'), /Fredoka/); assert.match(read('FONT-LICENSES.md'), /ZCOOL/);
   assert.match(read('lib/client.js'), /data:font\/woff2;base64,/);
 });
-test('six inert SVGs and offline preview are present, without source paths', () => {
+test('six transparent RGBA assets and offline preview are present, without source paths', () => {
   for (const name of ['working', 'celebrate', 'waiting', 'resting', 'sleeping', 'error']) {
-    const svg = read(`assets/${name}.svg`); assert.match(svg, /^<svg/); assert.doesNotMatch(svg, /<script|<foreignObject|\son\w+=|\shref=/i);
+    const bytes = fs.readFileSync(path.join(root, `assets/${name}.png`));
+    assert.ok(bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])), `${name} is a PNG`);
+    assert.equal(bytes[25], 6, `${name} carries an alpha channel`);
+    assert.ok(bytes.readUInt32BE(16) >= 128 && bytes.readUInt32BE(20) >= 128, `${name} keeps enough pixels for HiDPI`);
   }
+  assert.ok(manifest.files.includes('assets'));
   assert.doesNotMatch(read('lib/client.js'), /\/Users\/|fetch\(|XMLHttpRequest|dsh-pet-research|bridge-build-probe/);
   assert.doesNotMatch(read('lib/remote.js'), /\/Users\/|dsh-pet-research|bridge-build-probe/);
   const preview = read('preview/index.html');
@@ -101,27 +105,23 @@ test('six inert SVGs and offline preview are present, without source paths', () 
   assert.ok(read('preview/runtime.js').includes('M 4 6 L 8 10 L 12 6'));
   assert.ok(!read('lib/client.js').includes('M 4 6 L 8 10 L 12 6'));
 });
-test('manifest icon is a shippable, inert, package-relative SVG within DSH limits', () => {
+test('manifest icon is a shippable, inert, package-relative PNG within DSH limits', () => {
   const icon = manifest.icon;
   assert.equal(typeof icon, 'string');
   // DSH accepts only a relative file path; absolute paths, URLs and data: URIs are rejected.
   assert.doesNotMatch(icon, /^(?:[A-Za-z]:[\\/]|[\\/]|[A-Za-z][A-Za-z\d+.-]*:)/);
-  assert.equal(path.extname(icon).toLowerCase(), '.svg');
+  assert.equal(path.extname(icon).toLowerCase(), '.png');
   const resolved = path.resolve(root, icon);
   const relative = path.relative(root, resolved);
   assert.ok(!relative.startsWith('..') && !path.isAbsolute(relative));
   const stat = fs.statSync(resolved);
   assert.ok(stat.isFile());
   assert.ok(stat.size <= 256 * 1024, 'the icon must stay within the 256 KiB DSH limit');
-  const svg = fs.readFileSync(resolved, 'utf8');
-  assert.match(svg, /^<svg\s/);
-  assert.doesNotMatch(svg, /<script|<foreignObject|\son\w+\s*=|\shref\s*=|\sstyle\s*=|javascript:|data:/i);
-  assert.doesNotMatch(svg.replace(/xmlns="http:\/\/www\.w3\.org\/2000\/svg"/g, ''), /https?:\/\//);
-  const tags = [...svg.matchAll(/<\/?([a-zA-Z][\w:-]*)\b/g)].map(match => match[1]);
-  assert.deepEqual([...new Set(tags)].sort(), ['defs', 'linearGradient', 'path', 'stop', 'svg']);
-  // The artwork is embedded verbatim, so the icon cannot drift from the shipped illustration.
-  const artwork = read('assets/working.svg');
-  assert.ok(svg.includes(artwork.slice(artwork.indexOf('>') + 1, artwork.lastIndexOf('</svg>')).trim()));
-  // assets/ is published, so the icon travels with the package.
+  const bytes = fs.readFileSync(resolved);
+  assert.ok(bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])));
+  assert.equal(bytes[25], 6, 'the icon carries an alpha channel');
+  assert.equal(bytes.readUInt32BE(16), bytes.readUInt32BE(20), 'the icon is square');
+  assert.ok(bytes.readUInt32BE(16) >= 128, 'the icon is large enough for the plugin card');
+  // The icon is cut from the shipped artwork, so it travels with assets/.
   assert.ok(manifest.files.includes('assets'));
 });

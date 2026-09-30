@@ -61,11 +61,11 @@ function acquireWhaleNamespace(ctx, abort) {
     if (abort.signal.aborted) { cancelled(); return; }
     abort.signal.addEventListener('abort', cancelled, { once: true });
     try {
-      fiber = ctx.inject(['remote.whalePet'], scope => {
+      fiber = ctx.inject(['remote.whaleChan'], scope => {
         if (disposed || abort.signal.aborted) return;
         // Dependency withdrawal cancels the established stream.
-        scope.effect(() => () => abort.abort(), 'whale-pet.namespace');
-        resolve({ service: scope.remote.whalePet, dispose });
+        scope.effect(() => () => abort.abort(), 'whale-chan-pet.namespace');
+        resolve({ service: scope.remote.whaleChan, dispose });
       });
       // A synchronously activated child can be cancelled before inject returns.
       if (disposed) Promise.resolve(fiber.dispose()).catch(() => {});

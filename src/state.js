@@ -18,14 +18,16 @@ function nextVariantIndex(size, previous, random) {
   const pick = Math.min(count - 1, Math.max(0, Math.floor(random() * count) || 0));
   return previous >= 0 && pick >= previous ? pick + 1 : pick;
 }
-export const DEFAULTS = Object.freeze({ scale: 1, hidden: false, motion: true, scope: 'global', sleepAfterMs: 120000, x: null, y: null });
-export const STORAGE_KEY = 'dsh-plugin-whale-pet:v1';
+// The raster artwork is a portrait illustration, so it needs more pixels than the
+// upstream flat vector whale to read at the same visual weight; 125% matches its size.
+export const DEFAULTS = Object.freeze({ scale: 1.25, hidden: false, motion: true, scope: 'global', sleepAfterMs: 120000, x: null, y: null });
+export const STORAGE_KEY = 'dsh-plugin-whale-chan-pet:v1';
 
 export function cleanPreferences(value) {
   const source = value && typeof value === 'object' ? value : {};
   const finite = (v) => typeof v === 'number' && Number.isFinite(v);
   return {
-    scale: finite(source.scale) ? Math.min(1.6, Math.max(0.65, source.scale)) : 1,
+    scale: finite(source.scale) ? Math.min(1.6, Math.max(0.65, source.scale)) : DEFAULTS.scale,
     hidden: source.hidden === true,
     motion: source.motion !== false,
     scope: source.scope === 'current' ? 'current' : 'global',

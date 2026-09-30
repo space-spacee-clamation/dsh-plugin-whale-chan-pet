@@ -36,7 +36,7 @@ export class WhaleWidget {
           <span class="pet-art">
             <img class="pet-image" alt="" draggable="false" />
             <svg class="working-count" viewBox="0 0 116 89" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" hidden>
-              <text class="working-count-text" x="0" y="0" transform="translate(89.5 62.5) skewY(-9) skewX(-17)" text-anchor="middle" dominant-baseline="central"></text>
+              <text class="working-count-text" x="0" y="0" transform="translate(84.4 54)" text-anchor="middle" dominant-baseline="central"></text>
             </svg>
           </span>
         </button>
@@ -181,7 +181,9 @@ export class WhaleWidget {
     const size = 156 * this.preferences.scale;
     this.pet.style.width = `${size}px`; this.pet.style.height = `${size}px`;
     const top = Math.max(56, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dsh-frame-top-clearance')) || 0);
-    this.position = clampPosition(this.preferences.x ?? window.innerWidth - size - 24,
+    // The upstream whale-pet plugin keeps the bottom-right corner, so a fresh
+    // install parks this companion one slot to its left instead of on top of it.
+    this.position = clampPosition(this.preferences.x ?? window.innerWidth - size * 2 - 36,
       this.preferences.y ?? window.innerHeight - size - 90, size, size, window.innerWidth, window.innerHeight, top);
     this.pet.style.left = `${this.position.x}px`; this.pet.style.top = `${this.position.y}px`;
     this.positionBubble();

@@ -1,5 +1,5 @@
 // Read-only Host event bridge. No transcript retention or HTTP routes.
-export const name = 'whalePet';
+export const name = 'whaleChan';
 export const inject = ['agents'];
 export const BRIDGE_QUEUE_LIMIT = 128;
 
@@ -108,5 +108,5 @@ export function apply(ctx) {
   service.typertRemote = Object.freeze({ service, serviceKey: name, namespace: name });
   ctx.provide(name, service);
   ctx.on('session/event', (session, event) => hub.accept(session, event), { global: true });
-  ctx.effect(() => () => hub.dispose(), 'whale-pet.boundary-hub');
+  ctx.effect(() => () => hub.dispose(), 'whale-chan-pet.boundary-hub');
 }

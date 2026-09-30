@@ -1,4 +1,5 @@
-# Add only our plugin row. Does not replace any official DSH component.
+# Add only our plugin row. Does not replace any official DSH component or the
+# upstream whale-pet plugin, which keeps its own entry ID, service and storage key.
 - insert:
-    - id: whale-pet
-      name: dsh-plugin-whale-pet
+    - id: whale-chan-pet
+      name: dsh-plugin-whale-chan-pet

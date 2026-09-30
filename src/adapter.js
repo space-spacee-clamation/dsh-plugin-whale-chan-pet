@@ -23,7 +23,7 @@ export function selectedSessionId(snapshot) {
 
 /** Observe new live turn boundaries only. Baselines/replay are never celebrations. */
 export function observeSession(sessions, sessionId, { onBoundary, onReset = () => {}, onHealth = () => {} }) {
-  const reference = sessions.retain(sessionId, { source: 'whalePet' });
+  const reference = sessions.retain(sessionId, { source: 'whaleChan' });
   let alive = true;
   let stopEvents = () => {}, stopState = () => {};
   let seenSeq = -1;
@@ -154,7 +154,7 @@ export function createPlugin(require, assets, css, fonts) {
       }
       function QuietPet() {
         const [element, , icons] = useWhale();
-        return h(React.Fragment, null, h('div', { ref: element, 'data-whale-pet': 'degraded' }), icons);
+        return h(React.Fragment, null, h('div', { ref: element, 'data-whale-chan-pet': 'degraded' }), icons);
       }
       function ConnectedPet({ useSessions, useSessionStatus }) {
         const catalog = useSessions(snapshot => snapshot);
@@ -170,7 +170,7 @@ export function createPlugin(require, assets, css, fonts) {
           return () => { connection.dispose(); if (controller.current === connection) controller.current = null; };
         }, []);
         React.useEffect(push, [catalog, statuses]);
-        return h(React.Fragment, null, h('div', { ref: element, 'data-whale-pet': 'connected' }), icons);
+        return h(React.Fragment, null, h('div', { ref: element, 'data-whale-chan-pet': 'connected' }), icons);
       }
       class Boundary extends React.Component {
         constructor(props) { super(props); this.state = { failed: false }; }
@@ -182,7 +182,7 @@ export function createPlugin(require, assets, css, fonts) {
         return h(Boundary, null, supported ? h(ConnectedPet, props) : h(QuietPet));
       }
       ctx.slots.inject('shell.overlay', () => ctx.slots.register({
-        name: 'shell.overlay', id: 'whale-pet', order: 90,
+        name: 'shell.overlay', id: 'whale-chan-pet', order: 90,
       }, PetRoot));
     },
   };

@@ -18,9 +18,9 @@ export const WHALE_FRAME_SCHEMA = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('turn/end'), ...boundary, reason: z.string().check(z.maxLength(80)) }),
 ]);
 export const WHALE_WATCH_DESCRIPTOR = {
-  id: 'dsh-plugin-whale-pet#whalePet/watch', service: 'whalePet', namespace: 'whalePet', method: 'watch',
+  id: 'dsh-plugin-whale-chan-pet#whaleChan/watch', service: 'whaleChan', namespace: 'whaleChan', method: 'watch',
   mode: 'stream', invocation: { kind: 'direct' }, parameters: [],
   cancellation: { parameter: 'signal' },
-  result: { mode: 'strict', typeSymbol: 'dsh-plugin-whale-pet#WhaleBoundaryFrame', create: () => WHALE_FRAME_SCHEMA },
+  result: { mode: 'strict', typeSymbol: 'dsh-plugin-whale-chan-pet#WhaleBoundaryFrame', create: () => WHALE_FRAME_SCHEMA },
 };
-export const TYPERT_REMOTE = { package: 'dsh-plugin-whale-pet', descriptors: [WHALE_WATCH_DESCRIPTOR] };
+export const TYPERT_REMOTE = { package: 'dsh-plugin-whale-chan-pet', descriptors: [WHALE_WATCH_DESCRIPTOR] };

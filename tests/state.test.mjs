@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PetStateMachine, cleanPreferences, clampPosition } from '../src/state.js';
+import { PetStateMachine, cleanPreferences, clampPosition, DEFAULTS } from '../src/state.js';
 const base = { sessionId: 'a', available: true, running: false, pending: false };
 function machine() { const m = new PetStateMachine(0, 30000); m.update(base, 0); return m; }
 
@@ -68,7 +68,7 @@ test('preferences are bounded and tolerate corrupt stored values', () => {
   assert.deepEqual(cleanPreferences(null), cleanPreferences({}));
   assert.equal(cleanPreferences({ scale: 90 }).scale, 1.6);
   assert.equal(cleanPreferences({ scale: 0 }).scale, .65);
-  assert.equal(cleanPreferences({ scale: NaN }).scale, 1);
+  assert.equal(cleanPreferences({ scale: NaN }).scale, DEFAULTS.scale);
   assert.equal(cleanPreferences({ x: Infinity, y: '4' }).x, null);
   assert.equal(cleanPreferences({ sleepAfterMs: 10 }).sleepAfterMs, 120000);
   assert.equal(cleanPreferences({ hidden: 'yes' }).hidden, false);

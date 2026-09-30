@@ -13,7 +13,7 @@ function fixture(initialEntries = []) {
     eventSource: { getSnapshot: () => { if (failRead) throw Error('transient test fault'); return snapshot; }, subscribe: cb => { events.add(cb); return () => events.delete(cb); } },
     getSnapshot: () => state, subscribe: cb => { states.add(cb); return () => states.delete(cb); },
   };
-  const sessions = { retain(id, options) { assert.equal(id, 's'); assert.equal(options.source, 'whalePet'); return { binding: { session }, ready, release: () => releases++ }; } };
+  const sessions = { retain(id, options) { assert.equal(id, 's'); assert.equal(options.source, 'whaleChan'); return { binding: { session }, ready, release: () => releases++ }; } };
   const stop = observeSession(sessions, 's', { onBoundary: x => callbacks.push(x), onHealth: x => health.push(x), onReset: () => resets.push(1) });
   return {
     stop, callbacks, health, resets, events, states,
@@ -24,7 +24,7 @@ function fixture(initialEntries = []) {
   };
 }
 test('main session selector ignores background running and our own reference', () => {
-  assert.equal(selectedSessionId({ byId: { a: { id: 'a', running: true, retainedBy: { whalePet: 1 } }, b: { id: 'b', retainedBy: { mainView: 1 } } } }), 'b');
+  assert.equal(selectedSessionId({ byId: { a: { id: 'a', running: true, retainedBy: { whaleChan: 1 } }, b: { id: 'b', retainedBy: { mainView: 1 } } } }), 'b');
   assert.equal(selectedSessionId({}), undefined);
 });
 test('baseline/prepend/replace never replay completed history', () => {

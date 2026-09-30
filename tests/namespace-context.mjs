@@ -2,16 +2,16 @@ import assert from 'node:assert/strict';
 
 // Narrow Cordis capability/lifetime fixture. It deliberately rejects the bug
 // that permissive plain-object Remote mocks used to accept.
-export function withNamespaceInjection(ctx, namespace = ctx.remote?.whalePet) {
+export function withNamespaceInjection(ctx, namespace = ctx.remote?.whaleChan) {
   let available = true;
   const children = new Set();
   ctx.namespace = namespace;
-  if (ctx.remote) Object.defineProperty(ctx.remote, 'whalePet', {
+  if (ctx.remote) Object.defineProperty(ctx.remote, 'whaleChan', {
     configurable: true,
-    get() { throw new Error('cannot get property "remote.whalePet" without inject'); },
+    get() { throw new Error('cannot get property "remote.whaleChan" without inject'); },
   });
   ctx.inject = (keys, callback) => {
-    assert.deepEqual(keys, ['remote.whalePet']);
+    assert.deepEqual(keys, ['remote.whaleChan']);
     let disposed = false, active = false, cleanups = [];
     const deactivate = () => {
       if (!active) return;
@@ -24,7 +24,7 @@ export function withNamespaceInjection(ctx, namespace = ctx.remote?.whalePet) {
         if (disposed || active || !available) return;
         active = true;
         const child = Object.create(ctx);
-        Object.defineProperty(child, 'remote', { value: { whalePet: namespace } });
+        Object.defineProperty(child, 'remote', { value: { whaleChan: namespace } });
         child.effect = factory => {
           const cleanup = factory();
           cleanups.push(cleanup);

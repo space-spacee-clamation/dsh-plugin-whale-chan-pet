@@ -102,7 +102,7 @@ test('clean EOF clears just-published notice and closes its child while retainin
   const widget={preferences:{scope:'global'},host:{dataset:{}},update(s){updates.push(s);poses.push(machine.update(s,0).state)}};
   const state={getSnapshot:()=> 'connected',subscribe:()=>()=>{}};
   const frame=(type,seq)=>({type,hostEpoch:'PRIVATE',streamSeq:seq,sessionId:'PRIVATE',seq,time:seq,...(type==='turn/end'?{reason:'completed'}:{})});
-  const ctx={root:{},connection:{state},remote:{$mount:async()=>async()=>{},whalePet:{async *watch(){
+  const ctx={root:{},connection:{state},remote:{$mount:async()=>async()=>{},whaleChan:{async *watch(){
     yield {type:'baseline',hostEpoch:'PRIVATE',streamSeq:0,identities:[]};yield frame('turn/start',1);yield frame('turn/end',2);
   }}}};
   withNamespaceInjection(ctx);

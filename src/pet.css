@@ -13,10 +13,11 @@
 .pet-button:active{cursor:grabbing}.pet-button:focus-visible{outline:2px dashed var(--accent);outline-offset:0}
 .pet-art{display:block;position:relative;width:100%;height:100%;pointer-events:none;transform-origin:50% 90%;filter:drop-shadow(0 4px 2px #253e7320);will-change:transform}
 .pet-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none}
-/* Match working.svg's 116×89 coordinate space exactly: no object-fit gutter under the counter. */
-.pet[data-state=working] .pet-art{height:auto;aspect-ratio:116/89;max-height:100%}
+/* The count overlay re-anchors to this artwork, so the art box keeps the full
+   button height instead of locking to the overlay's original 116x89 space. */
+.pet[data-state=working] .pet-art{height:100%}
 .working-count{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.working-count-text{fill:#283a83;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:10.5px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0}
+.working-count-text{fill:#283a83;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0}
 .ground{position:absolute;bottom:8px;left:26%;right:26%;height:7px;filter:blur(3px);background:#506e9a1a;border-radius:50%;pointer-events:none}
 .bubble{position:absolute;left:0;top:0;background:transparent;color:var(--bubble-ink);border:1px solid transparent;box-shadow:none;border-radius:20px 22px 21px 19px;isolation:isolate;padding:11px 18px 12px;font-family:"Whale Bubble Latin","Whale Bubble Han","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;font-weight:500;font-synthesis:none;line-height:1.4;letter-spacing:.015em;-webkit-font-smoothing:antialiased;width:max-content;min-width:min(126px,calc(100vw - 24px));white-space:normal;text-wrap:balance;overflow-wrap:anywhere;text-align:center;max-width:min(260px,calc(100vw - 24px));opacity:0;transition:opacity .18s,translate .18s;translate:0 4px;pointer-events:none}
 .bubble-surface{display:block;position:absolute;left:-1px;top:-1px;width:calc(100% + 2px);height:calc(100% + 2px);overflow:visible;pointer-events:none;z-index:-1;filter:drop-shadow(0 6px 9px var(--bubble-shadow))}

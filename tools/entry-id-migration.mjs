@@ -1,7 +1,10 @@
-/** Offline planning helper only: no file access, install hook, or live profile mutation. */
-export const OLD_ENTRY_ID = 'dsh-plugin-whale-pet';
-export const NEW_ENTRY_ID = 'whale-pet';
-const MODULE_NAME = 'dsh-plugin-whale-pet';
+/** Offline planning helper only: no file access, install hook, or live profile mutation.
+ * Migrates ID-targeted overrides written for the upstream whale-pet plugin:
+ * entry ID `whale-pet` and module `dsh-plugin-whale-pet` become this fork's IDs.
+ */
+export const OLD_ENTRY_ID = 'whale-pet';
+export const NEW_ENTRY_ID = 'whale-chan-pet';
+const MODULE_NAMES = ['dsh-plugin-whale-chan-pet', 'dsh-plugin-whale-pet', 'whale-pet'];
 
 /** Plan migration of ordinary ID-targeted overrides, preserving all other values.
  * The caller must review and explicitly apply the resulting configuration.
@@ -27,7 +30,7 @@ export function planEntryIdMigration(patches) {
     throw new Error('Both entry IDs are present; review conflicting settings manually');
   }
   for (const patch of old) {
-    if (patch.insert !== undefined || (patch.name !== undefined && patch.name !== MODULE_NAME)) {
+    if (patch.insert !== undefined || (patch.name !== undefined && !MODULE_NAMES.includes(patch.name))) {
       throw new Error('Unexpected old-ID target requires manual review');
     }
     patch.id = NEW_ENTRY_ID;

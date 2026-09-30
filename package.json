@@ -1,15 +1,15 @@
 {
-  "name": "dsh-plugin-whale-pet",
+  "name": "dsh-plugin-whale-chan-pet",
   "version": "0.2.9",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yifffan/dsh-plugin-whale-pet.git"
+    "url": "git+https://github.com/space-spacee-clamation/dsh-plugin-whale-chan-pet.git"
   },
-  "homepage": "https://github.com/Yifffan/dsh-plugin-whale-pet",
-  "bugs": { "url": "https://github.com/Yifffan/dsh-plugin-whale-pet/issues" },
+  "homepage": "https://github.com/space-spacee-clamation/dsh-plugin-whale-chan-pet",
+  "bugs": { "url": "https://github.com/space-spacee-clamation/dsh-plugin-whale-chan-pet/issues" },
   "packageManager": "pnpm@11.7.0",
-  "description": "Your little whale buddy for work, wins, and well-earned naps.",
-  "icon": "./assets/icon.svg",
+  "description": "Your little whale-chan buddy for work, wins, and well-earned naps.",
+  "icon": "./assets/icon.png",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "main": "lib/index.js",
@@ -23,7 +23,7 @@
     "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },
-  "files": ["lib", "assets", "locale", "cordis.patch.yml", "README.md", "LICENSE", "ASSETS-LICENSE.md", "FONT-LICENSES.md", "COMPATIBILITY.md", "UPGRADE.md", "CHANGELOG.md"],
+  "files": ["lib", "assets", "locale", "cordis.patch.yml", "README.md", "README.zh-CN.md", "LICENSE", "ASSETS-LICENSE.md", "FONT-LICENSES.md", "COMPATIBILITY.md", "UPGRADE.md", "CHANGELOG.md"],
   "scripts": {
     "build": "node tools/bridge-build.mjs && node tools/build.mjs",
     "build:bridge": "node tools/bridge-build.mjs",

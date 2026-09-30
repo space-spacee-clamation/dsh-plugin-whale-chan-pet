@@ -13,7 +13,7 @@ function stateStore(value) {
 }
 function fakeContext(hub) {
  let mounts=0,unmounts=0;
- const remote={$mount:async contribution=>{assert.equal(contribution,TYPERT_REMOTE);mounts++;return async()=>{unmounts++}},whalePet:{watch:signal=>hub.watch(signal)}};
+ const remote={$mount:async contribution=>{assert.equal(contribution,TYPERT_REMOTE);mounts++;return async()=>{unmounts++}},whaleChan:{watch:signal=>hub.watch(signal)}};
  return withNamespaceInjection({remote,connection:{state:stateStore('connected'),generation:stateStore({id:1})},counts:()=>({mounts,unmounts})});
 }
 
@@ -123,7 +123,7 @@ test('namespace injection happens only after local mount resolves and watch uses
   const stop=observeGlobalEvents(ctx);t.after(()=>{stop();hub.dispose()});await settle();
   assert.equal(injections,0);assert.equal(ctx.namespaceChildren(),0);assert.equal(hub.clients.size,0);
   finishMount();await settle();assert.equal(injections,1);assert.equal(hub.clients.size,1);
-  assert.throws(()=>ctx.remote.whalePet,/without inject/);
+  assert.throws(()=>ctx.remote.whaleChan,/without inject/);
 });
 
 test('cleanup before async mount resolves releases it without starting stream or late callback',async()=>{
@@ -150,7 +150,7 @@ const flush = async () => { for (let i=0;i<80;i++) await Promise.resolve(); };
 test('namespace injection is required, never bypassed by a plain Remote mock',async t=>{
   t.mock.timers.enable({apis:['setTimeout']});
   const hub=new WhaleBoundaryHub({epoch:'e'}),ctx=fakeContext(hub),health=[],resets=[];
-  assert.throws(()=>ctx.remote.whalePet,/without inject/);
+  assert.throws(()=>ctx.remote.whaleChan,/without inject/);
   delete ctx.inject;
   const stop=observeGlobalEvents(ctx,{onHealth:v=>health.push(v),onReset:v=>resets.push(v)});t.after(()=>{stop();hub.dispose()});await flush();
   assert.equal(hub.clients.size,0);assert.equal(ctx.namespaceChildren(),0);

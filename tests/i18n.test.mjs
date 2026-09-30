@@ -41,9 +41,9 @@ test('absent locale service has a safe English initial fallback', () => {
 test('localized package metadata exports resolve and preserve chosen npm description', () => {
   const require = createRequire(new URL('../package.json',import.meta.url));
   const manifest = JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url),'utf8'));
-  const english = JSON.parse(fs.readFileSync(require.resolve('dsh-plugin-whale-pet/locale/en.json'),'utf8'));
-  const chinese = JSON.parse(fs.readFileSync(require.resolve('dsh-plugin-whale-pet/locale/zh.json'),'utf8'));
-  assert.equal(manifest.description,'Your little whale buddy for work, wins, and well-earned naps.');
+  const english = JSON.parse(fs.readFileSync(require.resolve('dsh-plugin-whale-chan-pet/locale/en.json'),'utf8'));
+  const chinese = JSON.parse(fs.readFileSync(require.resolve('dsh-plugin-whale-chan-pet/locale/zh.json'),'utf8'));
+  assert.equal(manifest.description,'Your little whale-chan buddy for work, wins, and well-earned naps.');
   assert.equal(english.meta.description,manifest.description);assert.equal(chinese.meta.title,'小鲸鱼');
   assert.ok(chinese.meta.description);assert.ok(manifest.files.includes('locale'));
   assert.ok(manifest.dsh.client.inject.includes('@deepseek-ai/dsh-client-locale'));
