@@ -185,6 +185,9 @@ export class WhaleWidget {
     // install parks this companion one slot to its left instead of on top of it.
     this.position = clampPosition(this.preferences.x ?? window.innerWidth - size * 2 - 36,
       this.preferences.y ?? window.innerHeight - size - 90, size, size, window.innerWidth, window.innerHeight, top);
+    // Snap to whole pixels: pointer coordinates are fractional, and a sub-pixel
+    // position resamples the composited layer's raster while dragging.
+    this.position = { x: Math.round(this.position.x), y: Math.round(this.position.y) };
     this.pet.style.left = `${this.position.x}px`; this.pet.style.top = `${this.position.y}px`;
     this.positionBubble();
     if (!this.panel.hidden) this.positionPanel();
