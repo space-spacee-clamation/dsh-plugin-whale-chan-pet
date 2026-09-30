@@ -181,9 +181,7 @@ export class WhaleWidget {
     const size = 156 * this.preferences.scale;
     this.pet.style.width = `${size}px`; this.pet.style.height = `${size}px`;
     const top = Math.max(56, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dsh-frame-top-clearance')) || 0);
-    // The upstream whale-pet plugin keeps the bottom-right corner, so a fresh
-    // install parks this companion one slot to its left instead of on top of it.
-    this.position = clampPosition(this.preferences.x ?? window.innerWidth - size * 2 - 36,
+    this.position = clampPosition(this.preferences.x ?? window.innerWidth - size - 24,
       this.preferences.y ?? window.innerHeight - size - 90, size, size, window.innerWidth, window.innerHeight, top);
     // Snap to whole pixels: pointer coordinates are fractional, and a sub-pixel
     // position resamples the composited layer's raster while dragging.

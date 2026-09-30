@@ -39,7 +39,9 @@ thought bubble, settings panel—is upstream's code, unchanged.
    pixels than the upstream flat vector to read at the same visual weight); the `working` state no longer
    locks the art box to the counter's original 116×89 space, which gives the illustration about 12% more
    width; the working-session count is re-anchored onto the laptop screen measured from the shipped
-   artwork; and a fresh install parks to the left of the upstream whale instead of on top of it.
+   artwork; and every state animation is a whole-pixel translation, because compositing a rotated or
+   scaled layer resamples its cached raster and softens the illustration. The default position is the
+   upstream one, so it lands in the same corner.
 4. **Asset pipeline.** `tools/build.mjs` now validates and inlines 8-bit RGBA PNG assets
    (`data:image/png;base64`) instead of validated SVG. `tools/prepare-assets.mjs` reproduces the shipped
    artwork from raw generator output, and `tools/render-state-overview.ps1` renders the overview above.
