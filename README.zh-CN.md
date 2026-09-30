@@ -12,7 +12,7 @@ A little companion that lives inside your DeepSeek Harness (DSH) window—there 
 
 **English documentation: [README.md](README.md).**
 
-本仓库是 [dsh-plugin-whale-pet](https://github.com/Yifffan/dsh-plugin-whale-pet) 的 fork：**角色素材全部换成 AI 生成的原创插画，并改用一套独立的插件标识**，因此它可以与上游插件同时安装、并存运行，而不是覆盖它。陪玩逻辑（状态机、Host 回合边界桥、思考气泡、设置面板）沿用上游代码，未做改动。
+本仓库是 [dsh-plugin-whale-pet](https://github.com/Yifffan/dsh-plugin-whale-pet) 的 fork：**角色素材全部换成 AI 生成的插画（角色设定来自互联网公开开源、MIT 协议），并改用一套独立的插件标识**，因此它可以与上游插件同时安装、并存运行，而不是覆盖它。陪玩逻辑（状态机、Host 回合边界桥、思考气泡、设置面板）沿用上游代码，未做改动。
 
 ## 本 fork 改了什么
 
@@ -32,7 +32,7 @@ A little companion that lives inside your DeepSeek Harness (DSH) window—there 
 
 ## 素材由 AI 生成
 
-本仓库的角色素材——`assets/` 下的六张状态图、插件图标 `assets/icon.png`、以及 `docs/images/whale-chan-states.png`——均由仓库维护者基于自有角色设定、使用 **AI 图像生成工具**创作，**不适用**本项目的 MIT 代码许可。
+本仓库的角色素材——`assets/` 下的六张状态图、插件图标 `assets/icon.png`、以及 `docs/images/whale-chan-states.png`——均基于**互联网公开开源（MIT 协议）的角色设定**、使用 **AI 图像生成工具**创作；角色设定本身按其原许可（MIT）执行，而生成的插画**不适用**本项目的 MIT 代码许可。
 
 从上游继承的一切仍按上游条款执行，完整声明见 [ASSETS-LICENSE.md](ASSETS-LICENSE.md)；气泡字体沿用上游，见 [FONT-LICENSES.md](FONT-LICENSES.md)。
 
@@ -124,7 +124,8 @@ pwsh -File tools/render-state-overview.ps1     # Windows，使用 System.Drawing
 ## 致谢与许可
 
 - **代码：** [MIT License](LICENSE)，fork 自 [Yifffan/dsh-plugin-whale-pet](https://github.com/Yifffan/dsh-plugin-whale-pet)，保留原始版权声明。
-- **角色素材：** AI 生成，不适用 MIT 代码许可，详见 [ASSETS-LICENSE.md](ASSETS-LICENSE.md)。
+- **角色设定：** 互联网公开开源，MIT 协议；其原始声明适用于该设定本身。
+- **角色素材：** 基于该设定用 AI 生成，不适用 MIT 代码许可，详见 [ASSETS-LICENSE.md](ASSETS-LICENSE.md)。
 - **字体：** 沿用上游，[SIL OFL 1.1 及来源声明](FONT-LICENSES.md)。
 - **Zod：** 其 MIT 版权与许可声明保留在生成的桥接文件中。
 

@@ -12,7 +12,7 @@ A little companion that lives inside your DeepSeek Harness (DSH) window—there 
 
 **中文说明见 [README.zh-CN.md](README.zh-CN.md).**
 
-This is a fork of [dsh-plugin-whale-pet](https://github.com/Yifffan/dsh-plugin-whale-pet) with original
+This is a fork of [dsh-plugin-whale-pet](https://github.com/Yifffan/dsh-plugin-whale-pet) with
 AI-generated character artwork and an independent plugin identity, so it can run beside the upstream
 plugin instead of replacing it. The companion behaviour—state machine, Host turn-boundary bridge,
 thought bubble, settings panel—is upstream's code, unchanged.
@@ -28,10 +28,10 @@ thought bubble, settings panel—is upstream's code, unchanged.
 | Stored preferences | `dsh-plugin-whale-pet:v1` | `dsh-plugin-whale-chan-pet:v1` |
 
 1. **Character artwork replaced.** All six state images, the plugin-manager icon, and the documentation
-   overview are new illustrations generated with an AI image model from the maintainer's own character
-   reference. The upstream whale stickers are not redistributed here. The upstream flat-vector whale and
-   this raster illustration therefore look different at the same size; see
-   [Known limitations](#known-limitations-and-deferred-work).
+   overview are new illustrations generated with an AI image model from an openly published character
+   setting (MIT-licensed, sourced from the internet). The upstream whale stickers are not redistributed
+   here. The upstream flat-vector whale and this raster illustration therefore look different at the same
+   size; see [Known limitations](#known-limitations-and-deferred-work).
 2. **Independent identity.** Package name, entry ID, Host service, Typert namespace, overlay ID, and
    preference key are all distinct from upstream, so both plugins can be installed at once without
    fighting over a service name, an overlay cell, or stored preferences.
@@ -52,8 +52,9 @@ thought bubble, settings panel—is upstream's code, unchanged.
 ## Artwork is AI-generated
 
 The character assets in this repository—the six state images in `assets/`, the plugin icon
-`assets/icon.png`, and `docs/images/whale-chan-states.png`—are **AI-generated** by the repository owner
-from the owner's own character reference. They are not covered by the MIT code license.
+`assets/icon.png`, and `docs/images/whale-chan-states.png`—are **AI-generated** illustrations rendered
+from an openly published, MIT-licensed character setting. The setting's own notice applies to the design;
+the rendered images are not covered by the MIT code license.
 
 Everything inherited from the upstream project keeps the upstream project's own terms; see
 [ASSETS-LICENSE.md](ASSETS-LICENSE.md) for the full notice and [FONT-LICENSES.md](FONT-LICENSES.md) for
@@ -177,7 +178,9 @@ commit matching outputs after a source change.
 - **Code:** [MIT License](LICENSE), forked from
   [Yifffan/dsh-plugin-whale-pet](https://github.com/Yifffan/dsh-plugin-whale-pet); the original copyright
   notice is retained.
-- **Character artwork:** AI-generated, separate from the MIT code license—see
+- **Character setting:** openly published on the internet under the MIT license; its notice applies to
+  the design.
+- **Character artwork:** AI-generated from that setting, separate from the MIT code license—see
   [ASSETS-LICENSE.md](ASSETS-LICENSE.md).
 - **Fonts:** unchanged from upstream, [SIL OFL 1.1 and source notices](FONT-LICENSES.md).
 - **Zod:** its MIT copyright and license notice are preserved in the generated bridge files.

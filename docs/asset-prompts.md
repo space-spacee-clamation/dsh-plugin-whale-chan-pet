@@ -28,7 +28,7 @@
 
 | 用途 | 路径 | 说明 |
 |---|---|---|
-| 角色设定 | `D:\大白鲸小剧场\dreammaker-asset.png` | 你的三视图设定稿：发型、耳鳍、发带、蝴蝶结、女仆装、尾巴、配色 |
+| 角色设定 | `D:\大白鲸小剧场\dreammaker-asset.png` | 角色三视图设定稿（互联网公开开源、MIT 协议的角色设定）：发型、耳鳍、发带、蝴蝶结、女仆装、尾巴、配色 |
 | 姿势/构图 | 上游仓库的 `docs/images/whale-states.png`（<https://github.com/Yifffan/dsh-plugin-whale-pet>） | 原素材六态总览（PNG，2 行 × 3 列）——告诉模型"照这一格的**姿势和构图**，但换成我的角色"。本仓库已不再包含上游美术，需要时从上游仓库取图。 |
 | 该状态原始矢量 | `D:\DSHarness\pets\dsh-plugin-whale-chan-pet\assets\<state>.svg` | 精确对照画布比例、元素位置（如 working 的笔电屏幕位置）；浏览器可直接打开 |
 
